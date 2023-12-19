@@ -15,6 +15,8 @@ CMD [ "npm", "run", "start:local" ]
 # Production build stage
 FROM common-build-stage as production-build-stage
 
+RUN npm install -g -f serve
+
 RUN npm run build:prod
 
 CMD [ "serve", "-s", "build" ]
