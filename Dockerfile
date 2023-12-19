@@ -5,20 +5,16 @@ ENV APP_HOME /app
 WORKDIR $APP_HOME
 COPY . ./
 
-RUN npm install
+RUN npm install -f
 
 # Development build stage
 FROM common-build-stage as development-build-stage
 
-RUN npm install
-
-CMD [ "npm", "run", "dev" ]
+CMD [ "npm", "run", "start" ]
 
 # Production build stage
 FROM common-build-stage as production-build-stage
 
-RUN npm install --omit=dev
-
 RUN npm run build
 
-CMD [ "npm", "run", "preview" ]
+CMD [ "serve", "-s", "build" ]
