@@ -19,4 +19,4 @@ RUN npm install -g -f serve
 
 RUN npm run build:prod
 
-CMD [ "npx", "serve", "-s", "build" ]
+CMD [ "npm", "run", "serve" ]
