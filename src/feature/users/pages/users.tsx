@@ -71,7 +71,7 @@ export function Users({ getUsers, users, editUser, deleteUser }: Props) {
 
   useEffect(() => {
     getUsers()
-  }, [])
+  }, [getUsers])
 
   const handleSearch = (e: React.ChangeEvent) => {
     let target = e.target

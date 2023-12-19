@@ -78,7 +78,7 @@ export const Login = ({ submitData, processLoading, loginLoaded, error }: Props)
     if (checkAdminAuth()) {
       history.push("/admin/dashboard")
     }
-  }, [processLoading])
+  }, [processLoading, history])
 
   const onSubmit: SubmitHandler<FormValues> = (data) => {
     submitData(data)

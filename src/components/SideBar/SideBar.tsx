@@ -15,8 +15,6 @@ import DynamicFeedIcon from '@material-ui/icons/DynamicFeed'
 import SupervisorAccountIcon from '@material-ui/icons/SupervisorAccount'
 import ExitToAppIcon from '@material-ui/icons/ExitToApp'
 
-import { checkAdminAuth } from '../../commons/check-authentication.common'
-
 const drawerWidth = 250
 
 const useStyles = makeStyles((theme: Theme) =>

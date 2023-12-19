@@ -89,7 +89,7 @@ export const Categories = ({ categoriesLoaded, getCategories, categories, submit
 
   useEffect(() => {
     getCategories()
-  }, [])
+  })
 
   return (
     <>

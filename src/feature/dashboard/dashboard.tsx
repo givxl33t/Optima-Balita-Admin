@@ -39,7 +39,7 @@ const categoriesHeadCells = [
 export const Dashboard = ({ users, usersData, usersLength, categories, articles, getUsers, getArticle, getCategories, getUsersData }) => {
   const classes = useStyles()
 
-  const [filterFn, setFilterFn] = useState({fn: items => {return items; }})
+  const [filterFn] = useState({fn: items => {return items; }})
 
   const {
     TblContainer,
@@ -59,7 +59,7 @@ export const Dashboard = ({ users, usersData, usersLength, categories, articles,
     getArticle()
     getCategories()
     getUsersData()
-  }, [])
+  }, [getArticle, getCategories, getUsersData])
 
   return (
     <Grid container spacing={1}>

@@ -16,9 +16,10 @@
     "axios": "^0.21.3",
     "chart.js": "^3.5.1",
     "connected-react-router": "^6.9.1",
+    "cross-env": "^7.0.3",
     "date-fns": "^2.23.0",
     "dotenv": "^10.0.0",
-    "history": "^5.0.1",
+    "history": "^4.10.1",
     "js-cookie": "^3.0.1",
     "jwt-decode": "^3.1.2",
     "markdown-it": "^12.2.0",
@@ -43,8 +44,10 @@
     "yup": "^0.32.9"
   },
   "scripts": {
-    "start": "react-scripts start",
+    "start": "WDS_SOCKET_HOST=127.0.0.1 WATCHPACK_POLLING=true react-scripts start",
+    "start:local": "cross-env PUBLIC_URL=https://optimabalita.dev/admin/ PORT=3000 WDS_SOCKET_HOST=127.0.0.1 WATCHPACK_POLLING=true react-scripts start",
     "build": "react-scripts build",
+    "build:prod": "cross-env PUBLIC_URL=https://givxl33t.site/admin/ react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },

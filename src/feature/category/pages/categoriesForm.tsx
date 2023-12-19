@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect } from 'react'
 
 import { useForm, SubmitHandler } from 'react-hook-form'
 import * as yup from 'yup'
@@ -47,7 +47,7 @@ export default function CategoriesForm({ sendData, setOpenPopup }: Props ) {
 
   useEffect(() => {
     register('name')
-  }, [])
+  })
 
   return (
     <Form onSubmit={handleSubmit(onSubmit)}>

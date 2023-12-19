@@ -28,7 +28,7 @@ export const PrivateAdminRoute = ({component, ...rest}: any) => {
   const routeComponent = (props) => {
     const checkAuth = checkAdminAuth()
 
-    if (checkAuth != false) {
+    if (checkAuth !== false) {
       refreshToken(checkAuth)
 
       return (
