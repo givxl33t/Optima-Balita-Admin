@@ -46,6 +46,7 @@
   "scripts": {
     "start": "WDS_SOCKET_HOST=127.0.0.1 WATCHPACK_POLLING=true react-scripts start",
     "start:local": "cross-env PUBLIC_URL=https://optimabalita.dev/admin/ PORT=3000 WDS_SOCKET_HOST=127.0.0.1 WATCHPACK_POLLING=true react-scripts start",
+    "start:prod": "cross-env PUBLIC_URL=https://www.givxl33t.site/admin/ react-scripts start",
     "build": "react-scripts build",
     "build:prod": "cross-env PUBLIC_URL=https://www.givxl33t.site/admin/ react-scripts build",
     "test": "react-scripts test",
