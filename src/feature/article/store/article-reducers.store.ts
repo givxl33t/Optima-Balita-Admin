@@ -10,10 +10,9 @@ import {
   ARTICLE_FAIL 
 } from './article-constants.store';
 import { IArticles } from '../typing/state';
-import { actionTypes } from '../typing/action';
 
 interface IAction {
-  type: actionTypes,
+  type: any,
   payload: IArticles
 }
 

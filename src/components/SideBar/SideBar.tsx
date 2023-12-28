@@ -73,7 +73,6 @@ const useStyles = makeStyles((theme: Theme) =>
 const routerItems = [
   { title: "Dashboard", router: "/admin/dashboard", icon: <AssessmentIcon /> },
   { title: "Articles", router: "/admin/dashboard/articles", icon: <CollectionsBookmarkIcon /> },
-  { title: "Categories", router: "/admin/dashboard/categories", icon: <DynamicFeedIcon /> },
   { title: "Users", router: "/admin/dashboard/users", icon: <SupervisorAccountIcon /> }
 ]
 
@@ -90,7 +89,7 @@ export default function Sidebar() {
   }, [])
 
   const handleLogout = () => {
-    http.delete('https://www.givxl33t.site/api/auth/logout', {
+    http.delete('https://optimabalita.dev/api/auth/logout', {
       data: {
         refreshToken: localStorage.getItem('refreshToken')
       }

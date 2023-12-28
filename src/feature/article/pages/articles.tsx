@@ -25,8 +25,6 @@ export interface Props {
   articles: any
   articlesLoaded: boolean
   articleDataLoaded: () => void
-  categories: any
-  getCategories: () => void
   submitData: (data: FormValues) => void
   deleteArticle: (data: any) => void
   editArticle: (data: any) => void
@@ -51,14 +49,15 @@ const useStyles = makeStyles((theme: Theme) =>
 )
 
 const headCells = [
-  { id: 'id', label: 'Id' },
+  { id: 'no', label: 'No.' },
   { id: 'title', label: 'Title' },
   { id: 'description', label: 'Description' },
+  { id: 'image', label: 'Image' },
   { id: 'author', label: 'Author' },
   { id: "actions", label: "Actions", disableSorting: true }
 ]
 
-export function Articles({ articlesLoaded, getArticle, categories, getCategories, articles, submitData, deleteArticle, editArticle }: Props) {
+export function Articles({ articlesLoaded, getArticle, articles, submitData, deleteArticle, editArticle }: Props) {
 
   const classes = useStyles()
 
@@ -75,8 +74,7 @@ export function Articles({ articlesLoaded, getArticle, categories, getCategories
 
   useEffect(() => {
     getArticle()
-    getCategories()
-  }, [getArticle, getCategories])
+  }, [getArticle])
 
   const handleSearch = (e: React.ChangeEvent) => {
     let target = e.target
@@ -132,11 +130,12 @@ export function Articles({ articlesLoaded, getArticle, categories, getCategories
           <TblHead />
           <TableBody>
             {
-              articles && recordsAfterPagingAndSorting().map((article) => (
+              articles && recordsAfterPagingAndSorting().map((article, index: number) => (
                 <TableRow key={article.id}>
-                  <TableCell>{article.id}</TableCell>
+                  <TableCell>{index + 1}</TableCell>
                   <TableCell>{article.title}</TableCell>
                   <TableCell>{article.description}</TableCell>
+                  <TableCell><img src={article.image} alt={article.title} style={{height:80, width:80, borderRadius:10}} ></img></TableCell>
                   <TableCell>{article.author}</TableCell>
                   <TableCell>
                     <Controllers.ActionButton
@@ -165,7 +164,6 @@ export function Articles({ articlesLoaded, getArticle, categories, getCategories
         setOpenPopup={setOpenPopup}
       >
         <ArticlesForm
-          categoriesData={categories}
           sendData={submitData}
           recordForEdit={recordForEdit}
           addOrEdit={addOrEdit}

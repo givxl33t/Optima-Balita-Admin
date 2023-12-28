@@ -14,8 +14,8 @@ const initialOfValues = {
 }
 
 const permissionFlags = [
-  {id: 1, title: 'Free acount'},
-  {id: 2, title: 'Paid member'},
+  {id: 1, title: 'Doctor'},
+  {id: 2, title: 'Guest'},
   {id: 5, title: 'Admin'}
 ]
 

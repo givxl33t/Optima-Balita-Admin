@@ -3,7 +3,6 @@ import { Switch, Route } from 'react-router-dom'
 
 import { makeStyles } from '@material-ui/core'
 
-import Category from '../category/pages'
 import Article from '../article/pages'
 import Users from '../users/pages'
 import Dashboard from '../dashboard'
@@ -41,7 +40,6 @@ export function Dashbaord() {
           <Switch>
             <Route exact path="/admin/dashboard" component={Dashboard} />
             <Route path="/admin/dashboard/articles" component={Article} />
-            <Route path="/admin/dashboard/categories" component={Category} />
             <Route path="/admin/dashboard/users" component={Users} />
           </Switch>
         </div>

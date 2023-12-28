@@ -44,15 +44,16 @@ const headCells = [
   { id: 'id', label: 'No.' },
   { id: 'username', label: 'User Name' },
   { id: 'email', label: 'Email' },
-  { id: 'permissionFlag', label: 'Permission Flag' },
-  { id: "actions", label: "Actions", disableSorting: true }
+  { id: 'profile', label: 'Profile' },
+  { id: "role", label: "Role", disableSorting: true },
+  { id: 'actions', label: 'Actions', disableSorting: true }
 ]
 
 export interface Props {
   getUsers: () => void
   users: any
   editUser: () => void
-  deleteUser: () => void
+  deleteUser: (id: any) => void
 }
 
 export function Users({ getUsers, users, editUser, deleteUser }: Props) {
@@ -118,11 +119,12 @@ export function Users({ getUsers, users, editUser, deleteUser }: Props) {
           <TableBody>
             {
               users && recordsAfterPagingAndSorting().map((item: any, index: number) => (
-                <TableRow key={item._id}>
+                <TableRow key={item.id}>
                   <TableCell>{index + 1}</TableCell>
-                  <TableCell>{item.firstName}</TableCell>
+                  <TableCell>{item.username}</TableCell>
                   <TableCell>{item.email}</TableCell>
-                  <TableCell>{item.permissionFlags}</TableCell>
+                  <TableCell><img src={item.profile} alt="profile" width="50" height="50" style={{height:50, width:50, borderRadius:50}} /></TableCell>
+                  <TableCell>{item.role}</TableCell>
                   <TableCell>
                       <Controllers.ActionButton
                         color="primary"
@@ -132,7 +134,7 @@ export function Users({ getUsers, users, editUser, deleteUser }: Props) {
                       </Controllers.ActionButton>
                       <Controllers.ActionButton
                         color="secondary"
-                        onClick={() => {deleteUser(item._id)}}
+                        onClick={() => {deleteUser(item.id)}}
                       >
                         <CloseIcon fontSize="small" />
                       </Controllers.ActionButton>

@@ -1,6 +1,6 @@
 import http from '../../../commons/http-istance.common'
 
-const PREFIX = 'https://www.givxl33t.site/api/article'
+const PREFIX = 'https://optimabalita.dev/api/article'
 
 export interface IArticles {
   title: string

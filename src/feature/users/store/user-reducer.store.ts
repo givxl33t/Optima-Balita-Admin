@@ -42,15 +42,15 @@ const userReducer = (state = initState, action: IAction) => {
       }
     
     case EDIT_USER_SUCCESS:
-      const userId = action.payload.newUser._id
-      const recordIndex = state.items.users.findIndex(item => item._id === userId)
+      const userId = action.payload.newUser.id
+      const recordIndex = state.items.findIndex(item => item._id === userId)
 
       newUsers.items.users[recordIndex] = {...action.payload.newUser}
       return newUsers
     
     case DELETE_USER_SUCCESS:
       const deleteId = action.payload.userId
-      newUsers.items.users = state.items.users.filter(item => item._id !== deleteId)
+      newUsers.items = state.items.users.filter(item => item.id !== deleteId)
       return newUsers
     
     case USERS_FAIL:

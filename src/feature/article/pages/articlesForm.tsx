@@ -19,7 +19,6 @@ const initialOfValues = {
 
 interface Props {
   sendData: (data: FormValues) => void
-  categoriesData: any
   addOrEdit: any
   recordForEdit: any
 }
@@ -42,7 +41,7 @@ const useStyles = makeStyles((theme: Theme) =>
   })
 )
 
-export default function ArticlesForm({categoriesData, sendData, addOrEdit, recordForEdit}: Props) {
+export default function ArticlesForm({ sendData, addOrEdit, recordForEdit}: Props) {
   const classes = useStyles()
   const mdParser = new MarkdownIt()
 

@@ -10,7 +10,7 @@ import { checkAdminAuth } from '../commons/check-authentication.common'
 
 const refreshToken = async () => {
   try {
-    const refresh = await http.put('https://www.givxl33t.site/api/auth/refresh', {
+    const refresh = await http.put('https://optimabalita.dev/api/auth/refresh', {
       refreshToken: localStorage.getItem('refreshToken')
     })
 
@@ -18,18 +18,17 @@ const refreshToken = async () => {
     localStorage.setItem('refreshToken', refresh.data.refreshToken)
 
     console.log('refresh token herreeee');
-  } catch (error) {
+  } catch (error: any) {
     console.log(error.message)
   }
 }
 
-
 export const PrivateAdminRoute = ({component, ...rest}: any) => {
-  const routeComponent = (props) => {
+  const routeComponent = (props: any) => {
     const checkAuth = checkAdminAuth()
 
     if (checkAuth !== false) {
-      refreshToken(checkAuth)
+      refreshToken()
 
       return (
         React.createElement(component, props)

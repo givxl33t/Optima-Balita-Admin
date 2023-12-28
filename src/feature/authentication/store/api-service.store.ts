@@ -1,6 +1,6 @@
 import http from '../../../commons/http-istance.common'
 
-const PREFIX = 'https://www.givxl33t.site/api/auth'
+const PREFIX = 'https://optimabalita.dev/api/auth'
 
 export interface ILogin { 
   email: string

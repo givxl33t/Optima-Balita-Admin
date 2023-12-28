@@ -36,7 +36,7 @@ const categoriesHeadCells = [
 ]
 
 
-export const Dashboard = ({ users, usersData, usersLength, categories, articles, getUsers, getArticle, getCategories, getUsersData }) => {
+export const Dashboard = ({ users, usersData, usersLength, categories, articles, getUsers, getArticle, getUsersData }) => {
   const classes = useStyles()
 
   const [filterFn] = useState({fn: items => {return items; }})
@@ -57,9 +57,8 @@ export const Dashboard = ({ users, usersData, usersLength, categories, articles,
 
   useEffect(() => {
     getArticle()
-    getCategories()
     getUsersData()
-  }, [getArticle, getCategories, getUsersData])
+  }, [getArticle, getUsersData])
 
   return (
     <Grid container spacing={1}>
@@ -87,12 +86,6 @@ export const Dashboard = ({ users, usersData, usersLength, categories, articles,
                   />
                 </Grid>
 
-                <Grid item md={4}>
-                  <ComponentIndicator
-                    title="Categories"
-                    length={categories && categories.length}
-                  />
-                </Grid>
               </Grid>
             </ListItem>
             <ListItem>

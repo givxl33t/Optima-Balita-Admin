@@ -1,8 +1,12 @@
 export const users = (state: any) => {
-  const users = state.users.items.users
+  const users = state.users.items
 
-  if (users) 
+  console.log("ASDSADASDASD", users);
+
+  if (users) {
+    console.log("ASDSADASDASD2222");
     return users.map(user => user)
+  }
   else 
     return users
 }
@@ -10,8 +14,9 @@ export const users = (state: any) => {
 export const usersData = (state: any) => {
   const users = state.users.usersData.userData
 
-  if (users) 
+  if (users) {
     return users.map(user => user)
+  }
   else 
     return users
 }
