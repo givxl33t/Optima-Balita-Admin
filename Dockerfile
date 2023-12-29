@@ -19,4 +19,4 @@ RUN npm install --omit=dev
 
 RUN npm run build:staging
 
-CMD [ "npm", "run", "preview" ]
+CMD [ "npm", "run", "serve" ]
