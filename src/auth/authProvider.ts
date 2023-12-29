@@ -2,8 +2,16 @@
 import { AuthProvider } from "react-admin";
 import { addRefreshAuthToAuthProvider } from "react-admin";
 import { refreshAuth } from "./refreshAuth";
+import { JwtPayload, jwtDecode } from "jwt-decode";
 
 const apiUrl = import.meta.env.VITE_JSON_SERVER_URL + '/auth';
+
+const ADMIN_ID = 'a1582ba5-d764-4a15-b181-657e8753869b';
+
+interface CustomJwtPayload extends JwtPayload {
+    user_id: string;
+    role_id: string;
+}
 
 const myAuthProvider: AuthProvider = {
     login: ({ username, password }) => {
@@ -21,9 +29,20 @@ const myAuthProvider: AuthProvider = {
                 return response.json();
             })
             .then(({ accessToken, refreshToken }) => {
+
+                const decodedToken: CustomJwtPayload = jwtDecode(accessToken);
+
+                if (decodedToken.role_id !== ADMIN_ID) {
+                    throw new Error('Invalid role');
+                }
+
                 localStorage.setItem('access_token', accessToken);
                 localStorage.setItem('refresh_token', refreshToken);
-            }).catch(() => {
+            }).catch((error) => {
+                if (error.message === 'Invalid role') {
+                    // Provide a user-friendly error message
+                    throw new Error('You do not have admin rights');
+                }
                 throw new Error('Network error')
             });
     },
