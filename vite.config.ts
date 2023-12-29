@@ -10,5 +10,5 @@ export default defineConfig({
     server: {
         host: true,
     },
-    base: 'https://optimabalita.dev/admin',
+    base: 'https://www.givxl33t.site/admin',
 });
