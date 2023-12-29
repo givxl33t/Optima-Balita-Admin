@@ -32,6 +32,10 @@ const myAuthProvider: AuthProvider = {
             ? Promise.resolve() 
             : Promise.reject(),
     logout: () => {
+        if (!localStorage.getItem('refresh_token')) {
+            return Promise.resolve();
+        }
+
         const request = new Request(`${apiUrl}/logout`, {
             method: 'DELETE',
             body: JSON.stringify({refreshToken: localStorage.getItem('refresh_token')}),

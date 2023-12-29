@@ -5,8 +5,12 @@ const apiUrl = import.meta.env.VITE_JSON_SERVER_URL + '/auth';
 export const refreshAuth = () => {
     const accessToken = localStorage.getItem('access_token');
     const refreshToken = localStorage.getItem('refresh_token');
+    if (!accessToken || !refreshToken) {
+        return Promise.reject();
+    }
 
-    const decoded = jwtDecode(accessToken as string);
+    const decoded = jwtDecode(accessToken);
+
     const now = Date.now().valueOf() / 1000;
     if (decoded && decoded.exp && decoded.exp - 10 < now) {
         const request = new Request(`${apiUrl}/refresh`, {
