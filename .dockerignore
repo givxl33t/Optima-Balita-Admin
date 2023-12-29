@@ -1,6 +1,0 @@
-# compiled output
-**/node_modules/*
-**/build/*
-
-# code formatter
-.eslintcache
