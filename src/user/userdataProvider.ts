@@ -4,10 +4,10 @@ import { fetchUtils } from 'react-admin';
 import { addRefreshAuthToDataProvider } from 'react-admin';
 import { refreshAuth } from '../auth/refreshAuth';
 
-const apiUrl = import.meta.env.VITE_JSON_SERVER_URL + '/article';
+const apiUrl = import.meta.env.VITE_JSON_SERVER_URL + '/user';
 const httpClient = fetchUtils.fetchJson;
 
-let articleDataProvider = {
+let userDataProvider = {
   getList: ({}, params: any) => {
     const { page, perPage } = params.pagination;
     const { filter } = params;
@@ -18,42 +18,34 @@ let articleDataProvider = {
     }
 
     const url = `${apiUrl}/?limit=${perPage}&page=${page}&filter=${q}`;
-
-    return httpClient(url)
-      .then(({ json }) => ({
-        data: json.data,
-        total: json.meta.total_data,
-      }));
-  },
-  getOne: ({}, params: any) =>
-    httpClient(`${apiUrl}/${params.id}`).then(({ json }) => ({
-      data: json.data,
-    })),
-  create: ({}, params: any) => {
-    const url = `${apiUrl}`;
     const accessToken = localStorage.getItem('access_token');
     const headers = new Headers({
       'Authorization': `Bearer ${accessToken}`,
     });
 
-    const formData = new FormData();
-    formData.append('title', params.data.title);
-    formData.append('description', params.data.description);
-    formData.append('content', params.data.content);
-    if (params.data.image) {
-      formData.append('image', params.data.image.rawFile);
-    }
-
+    return httpClient(url, {
+      method: 'GET',
+      headers,
+    })
+      .then(({ json }) => ({
+        data: json.data,
+        total: json.meta.total_data,
+      }));
+  },
+  getOne: ({}, params: any) => {
+    const url = `${apiUrl}/${params.id}`;
+    const accessToken = localStorage.getItem('access_token');
+    const headers = new Headers({
+      'Authorization': `Bearer ${accessToken}`,
+    });
 
     return httpClient(url, {
-        method: 'POST',
-        body: formData,
-        headers,
-      })
-      .then(({ json }) => ({ data: {
-        id: json.data.id,
-        ...json.data,
-      } }));
+      method: 'GET',
+      headers,
+    })
+      .then(({ json }) => ({
+        data: json.data,
+      }));
   },
   update: ({}, params: any) => {
     const url = `${apiUrl}/${params.id}`;
@@ -62,22 +54,27 @@ let articleDataProvider = {
       'Authorization': `Bearer ${accessToken}`,
     });
 
-    const formData = new FormData();
-    formData.append('title', params.data.title);
-    formData.append('description', params.data.description);
-    formData.append('content', params.data.content);
-    if (params.data.image.rawFile) {
-      formData.append('image', params.data.image.rawFile);
+    let data: {} = {
+      email: params.data.email,
+      username: params.data.username,
+    }
+
+    if (params.data.role_id) {
+      data = {
+        ...data,
+        role_id: params.data.role_id,
+      }
     }
 
     return httpClient(url, {
         method: 'PUT',
-        body: formData,
+        body: JSON.stringify(data),
         headers,
       })
       .then(({ json }) => ({ data: {
         id: params.id,
         ...json.data,
+      
       } }));
   },
   delete: ({}, params: any) => {
@@ -98,7 +95,7 @@ let articleDataProvider = {
     const headers = new Headers({
       'Authorization': `Bearer ${accessToken}`,
     });
-
+    
     const deletePromises = params.ids.map((id: any) => httpClient(`${apiUrl}/${id}`, {
       method: 'DELETE',
       headers,
@@ -112,7 +109,6 @@ let articleDataProvider = {
         return Promise.reject(error)
       });
   }
-
 };
 
-export default articleDataProvider = addRefreshAuthToDataProvider(articleDataProvider as any, refreshAuth);
+export default userDataProvider = addRefreshAuthToDataProvider(userDataProvider as any, refreshAuth);
