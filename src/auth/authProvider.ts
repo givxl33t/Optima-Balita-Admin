@@ -88,6 +88,35 @@ const myAuthProvider: AuthProvider = {
         );
     },
     getPermissions: () => Promise.resolve(),
+    getIdentity: () => {
+        const request = new Request(`${apiUrl}/me`, {
+            method: 'GET',
+            headers: new Headers({ 
+                'Content-Type': 'application/json',
+                'Authorization': 'Bearer ' + localStorage.getItem('access_token') || '',
+            }),
+        });
+
+        return fetch(request)
+            .then(response => {
+                if (response.status > 400) {
+                    throw new Error(response.statusText);
+                }
+                return response.json();
+            })
+            .then(({ data }) => {
+                const decodedToken: CustomJwtPayload = jwtDecode(localStorage.getItem('access_token') || '');
+
+                return Promise.resolve({
+                    id: decodedToken.user_id,
+                    fullName: data.username,
+                    avatar: data.profile,
+                    role: decodedToken.role_id,
+                });
+            }).catch(() => {
+                throw new Error('Network error')
+            });
+    }
 };
 
 export const authProvider = addRefreshAuthToAuthProvider(myAuthProvider, refreshAuth);
