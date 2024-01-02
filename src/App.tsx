@@ -7,16 +7,20 @@ import { ArticleList, ArticleCreate, ArticleEdit, ArticleShow } from "./article/
 import { UserList, UserEdit, UserShow } from "./user/users";
 import { ForumList, ForumCreate, ForumEdit, ForumShow } from "./forum/forums";
 import { CommentCreate, CommentEdit, CommentShow } from "./comment/comments";
-import articleDataProvider from "./article/articledataProvider";
-import userDataProvider from "./user/userdataProvider";
-import forumDataProvider from "./forum/forumdataProvider";
-import commentDataProvider from "./comment/commentdataProvider";
-import likeDataProvider from "./like/likedataProvider";
+import { ChildrenList, ChildrenShow } from "./children/childrens";
+import articleDataProvider from "./article/articleProvider";
+import userDataProvider from "./user/userProvider";
+import forumDataProvider from "./forum/forumProvider";
+import commentDataProvider from "./comment/commentProvider";
+import likeDataProvider from "./like/likeProvider";
+import childrenDataProvider from "./children/childrenProvider";
+import nutritionHistoryDataProvider from "./nutritionHistory/nutritionHistoryProvider";
 import { authProvider } from "./auth/authProvider";
 
 import ArticleIcon from '@mui/icons-material/Article';
 import GroupsIcon from '@mui/icons-material/Groups';
 import ForumIcon from '@mui/icons-material/Forum';
+import ChildCareIcon from '@mui/icons-material/ChildCare';
 
 const dataProvider = combineDataProviders((resource) => {
   switch (resource) {
@@ -30,6 +34,10 @@ const dataProvider = combineDataProviders((resource) => {
       return commentDataProvider;
     case "like":
       return likeDataProvider;
+    case "children":
+      return childrenDataProvider;
+    case "nutritionHistory":
+      return nutritionHistoryDataProvider;
     default:
       throw new Error(`Unknown resource: ${resource}`);
   }
@@ -66,6 +74,15 @@ export const App = () => (
     />
     <Resource
       name="like"
+    />
+    <Resource
+      name="children"
+      list={ChildrenList}
+      show={ChildrenShow}
+      icon={ChildCareIcon}
+    />
+    <Resource
+      name="nutritionHistory"
     />
   </Admin>
 );
