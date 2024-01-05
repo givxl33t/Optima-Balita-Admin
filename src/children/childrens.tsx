@@ -1,6 +1,7 @@
 import * as React from 'react';
-import { List, Datagrid, TextField, DateField, Show, ShowButton, TabbedShowLayout, Filter, SearchInput, ReferenceManyField, ImageField, WrapperField, useShowController } from 'react-admin';
+import { List, Datagrid, TextField, DateField, Show, ShowButton, TabbedShowLayout, Filter, SearchInput, ReferenceManyField, ImageField, WrapperField, useShowController, EditButton } from 'react-admin';
 import { ZScoreLengthChart, ZScoreWeightChart } from './zScoreChart';
+import { DeleteNutritionHistoryButton } from '../nutritionHistory/nutritionHistoryButtons';
 
 const ChildrenFilter: React.FC = (props) => (
     <Filter {...props}>
@@ -18,7 +19,7 @@ export const ChildrenList: React.FC = (props) => (
       <TextField source="latest_weight" label="Weight (kg)" sortable={false} />
       <TextField source="latest_bmi" label="BMI" sortable={false} />
       <TextField source="latest_weight_category" label="Category" sortable={false} />
-      <WrapperField label="Caregiver">
+      <WrapperField label="Weigher">
         <ImageField 
             source="creator_profile" 
             sx={{'& img': { maxWidth: 50, maxHeight: 50, objectFit: 'cover', borderRadius: '50%' }}} 
@@ -61,8 +62,10 @@ export const ChildrenShow: React.FC = (props) => {
               <TextField source="height" label="Height (cm)" />
               <TextField source="weight" label= "Weight (kg)" />
               <TextField source="bmi" label="BMI" />
-              <TextField source="weight_category" label="Category" />
+              <TextField source="weight_category" label="BMI Category" />
               <DateField source="created_at" />
+              <EditButton />
+              <DeleteNutritionHistoryButton />
             </Datagrid>
           </ReferenceManyField>
           <div style={{ display: 'flex', flexDirection: 'row' }}>
@@ -76,16 +79,16 @@ export const ChildrenShow: React.FC = (props) => {
             </div>
           </div>
         </TabbedShowLayout.Tab>
-        <TabbedShowLayout.Tab label="caregiver">
-          <TextField source="creator_id" label="Caregiver id" />
+        <TabbedShowLayout.Tab label="weigher">
+          <TextField source="creator_id" label="Weigher id" />
           <ImageField 
             source="creator_profile" 
             sx={{'& img': { maxWidth: 50, maxHeight: 50, objectFit: 'cover', borderRadius: '50%' }}} 
             title="username"
             sortable={false}
-            label="Caregiver profile"
+            label="Weigher profile"
           />
-          <TextField source="creator_username" label="Caregiver username" />
+          <TextField source="creator_username" label="Weigher username" />
         </TabbedShowLayout.Tab>
       </TabbedShowLayout>
     </Show>
