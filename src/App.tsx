@@ -8,6 +8,7 @@ import { UserList, UserEdit, UserShow } from "./user/users";
 import { ForumList, ForumCreate, ForumEdit, ForumShow } from "./forum/forums";
 import { CommentCreate, CommentEdit, CommentShow } from "./comment/comments";
 import { ChildrenList, ChildrenShow } from "./children/childrens";
+import { NutritionHistoryEdit } from "./nutritionHistory/nutritionHistories";
 import articleDataProvider from "./article/articleProvider";
 import userDataProvider from "./user/userProvider";
 import forumDataProvider from "./forum/forumProvider";
@@ -83,6 +84,7 @@ export const App = () => (
     />
     <Resource
       name="nutritionHistory"
+      edit={NutritionHistoryEdit}
     />
   </Admin>
 );

@@ -28,7 +28,7 @@ export const CommentEdit: React.FC = () => {
     const dataProvider = useDataProvider();
 
     const onSuccess = (response: any) => {
-        notify('ra.notification.updated', { smart_count: 1 });
+        notify('Element updated');
         dataProvider.update('comment', {
             id: response.id,
             data: { comment_content: response.comment_content },
