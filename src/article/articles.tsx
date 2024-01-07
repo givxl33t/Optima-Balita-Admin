@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { List, Datagrid, TextField, DateField, ImageField, Create, ListProps, Show, RichTextField, ShowButton, Edit, SimpleForm, EditButton, TextInput, required, ImageInput, DeleteButton, TabbedShowLayout, Filter, SearchInput } from 'react-admin';
+import { List, Datagrid, TextField, DateField, ImageField, Create, ListProps, Show, RichTextField, ShowButton, Edit, SimpleForm, EditButton, TextInput, required, ImageInput, DeleteButton, TabbedShowLayout, Filter, SearchInput, WrapperField } from 'react-admin';
 import { RichTextInput } from 'ra-input-rich-text';
 
 const ArticleFilter: React.FC = (props) => (
@@ -19,8 +19,16 @@ export const ArticleList: React.FC<ListProps> = (props) => (
             />
             <TextField source="title" sortable={false} />
             <TextField source="description" sortable={false} />
-            <TextField source="author" sortable={false} />
-            <DateField source="created_at" label="Published at" sortable={false} />
+            <WrapperField label="Author">
+                <ImageField 
+                    source="author_profile" 
+                    sx={{'& img': { maxWidth: 50, maxHeight: 50, objectFit: 'cover', borderRadius: '50%' }}} 
+                    title="author"
+                    sortable={false} 
+                />
+                <TextField source="author" sortable={false} />
+            </WrapperField>
+            <DateField source="created_at" showTime label="Published at" sortable={false} />
             <ShowButton />
             <EditButton />
             <DeleteButton />
@@ -64,7 +72,7 @@ export const ArticleShow: React.FC = (props) => (
                 <TextField source="slug" />
                 <TextField source="title" />
                 <TextField source="description" />
-                <DateField source="created_at" label="Published at" />
+                <DateField source="created_at" showTime label="Published at" />
             </TabbedShowLayout.Tab>
             <TabbedShowLayout.Tab label="content">
                 <RichTextField source="content" />

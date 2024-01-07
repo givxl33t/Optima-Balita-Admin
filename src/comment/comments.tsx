@@ -64,7 +64,7 @@ export const CommentShow: React.FC = (props) => (
                 <TextField source="id" />
                 <TextField source="comment_content" />
                 <TextField source="commenter_username" />
-                <DateField source="created_at" />
+                <DateField source="created_at" showTime />
             </TabbedShowLayout.Tab>
             <TabbedShowLayout.Tab label="discussion">
                 <TextField source="discussion_id" />
