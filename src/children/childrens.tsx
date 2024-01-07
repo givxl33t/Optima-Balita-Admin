@@ -23,12 +23,12 @@ export const ChildrenList: React.FC = (props) => (
         <ImageField 
             source="creator_profile" 
             sx={{'& img': { maxWidth: 50, maxHeight: 50, objectFit: 'cover', borderRadius: '50%' }}} 
-            title="username"
+            title="creator_username"
             sortable={false} 
         />
         <TextField source="creator_username" sortable={false} />
       </WrapperField>
-      <DateField source="created_at" label="Last weighing" sortable={false} />
+      <DateField source="created_at" showTime label="Last weighing" sortable={false} />
       <ShowButton />
     </Datagrid>
   </List>
@@ -63,7 +63,7 @@ export const ChildrenShow: React.FC = (props) => {
               <TextField source="weight" label= "Weight (kg)" />
               <TextField source="bmi" label="BMI" />
               <TextField source="weight_category" label="BMI Category" />
-              <DateField source="created_at" />
+              <DateField source="created_at" showTime />
               <EditButton />
               <DeleteNutritionHistoryButton />
             </Datagrid>

@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { List, Datagrid, TextField, DateField, ListProps, Show, ShowButton, EditButton, DeleteButton, TabbedShowLayout, Filter, SearchInput, Create, SimpleForm, required, TextInput, Edit, ReferenceManyField, Pagination, ImageField } from 'react-admin';
+import { List, Datagrid, TextField, DateField, ListProps, Show, ShowButton, EditButton, DeleteButton, TabbedShowLayout, Filter, SearchInput, Create, SimpleForm, required, TextInput, Edit, ReferenceManyField, Pagination, ImageField, WrapperField } from 'react-admin';
 import { CreateCommentButton, DeleteCommentButton } from '../comment/commentButtons';
 
 const ForumFilter: React.FC = (props) => (
@@ -15,8 +15,16 @@ export const ForumList: React.FC<ListProps> = (props) => (
             <TextField source="post_content" label="Content" sortable={false} />
             <TextField source="comment_count" sortable={false} />
             <TextField source="like_count" sortable={false} />
-            <TextField source="poster_username" label="Created by" sortable={false} />
-            <DateField source="created_at" sortable={false} />
+            <WrapperField label="Poster">
+                <ImageField 
+                    source="poster_profile" 
+                    sx={{'& img': { maxWidth: 50, maxHeight: 50, objectFit: 'cover', borderRadius: '50%' }}} 
+                    title="username"
+                    sortable={false} 
+                />
+                <TextField source="poster_username" sortable={false} />
+            </WrapperField>
+            <DateField source="created_at" showTime sortable={false} />
             <ShowButton />
             <EditButton />
             <DeleteButton />
@@ -54,7 +62,7 @@ export const ForumShow: React.FC = (props) => {
                 <TextField source="post_content" />
                 <TextField source="comment_count" />
                 <TextField source="like_count" />
-                <DateField source="created_at" />
+                <DateField source="created_at" showTime />
             </TabbedShowLayout.Tab>
             <TabbedShowLayout.Tab label="comments">
                 <ReferenceManyField
@@ -65,8 +73,16 @@ export const ForumShow: React.FC = (props) => {
                 >
                     <Datagrid>
                         <TextField source="comment_content" />
-                        <TextField source="commenter_username" />
-                        <DateField source="created_at" />
+                        <WrapperField label="Commenter">
+                            <ImageField 
+                                source="commenter_profile" 
+                                sx={{'& img': { maxWidth: 50, maxHeight: 50, objectFit: 'cover', borderRadius: '50%' }}} 
+                                title="commenter_username"
+                                sortable={false} 
+                            />
+                            <TextField source="commenter_username" sortable={false} />
+                        </WrapperField>
+                        <DateField source="created_at" showTime />
                         <ShowButton />
                         <EditButton />
                         <DeleteCommentButton />

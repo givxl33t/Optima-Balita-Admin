@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { List, Datagrid, TextField, DateField, ImageField, ListProps, ShowButton, EditButton, DeleteButton, Show, SimpleShowLayout, Edit, SimpleForm, TextInput, SelectInput, Filter, SearchInput } from 'react-admin';
+import { List, Datagrid, TextField, EmailField, DateField, ImageField, ListProps, ShowButton, EditButton, DeleteButton, Show, SimpleShowLayout, Edit, SimpleForm, TextInput, SelectInput, Filter, SearchInput } from 'react-admin';
 
 const roleChoices = [
   { role_id: 'a1582ba5-d764-4a15-b181-657e8753869b', name: 'ADMIN' },
@@ -24,9 +24,9 @@ export const UserList: React.FC<ListProps> = (props) => (
             sortable={false} 
           />
           <TextField source="username" sortable={false} />
-          <TextField source="email" sortable={false} />
+          <EmailField source="email" sortable={false} />
           <TextField source="role" sortable={false} />
-          <DateField source="created_at" sortable={false} />
+          <DateField source="created_at" showTime sortable={false} />
           <ShowButton />
           <EditButton />
           <DeleteButton />
@@ -62,9 +62,9 @@ export const UserShow: React.FC = (props) => (
         title="username"
       />
       <TextField source="username" />
-      <TextField source="email" />
+      <EmailField source="email" />
       <TextField source="role" />
-      <DateField source="created_at" />
+      <DateField source="created_at" showTime />
     </SimpleShowLayout>
   </Show>
 );
