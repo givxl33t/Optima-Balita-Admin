@@ -7,6 +7,7 @@ import { JwtPayload, jwtDecode } from "jwt-decode";
 const apiUrl = import.meta.env.VITE_JSON_SERVER_URL + '/auth';
 
 const ADMIN_ID = 'a1582ba5-d764-4a15-b181-657e8753869b';
+const DOCTOR_ID = '9c4e9a57-12da-4dae-b2e0-edec77c4f86e';
 
 interface CustomJwtPayload extends JwtPayload {
     user_id: string;
@@ -32,7 +33,7 @@ const myAuthProvider: AuthProvider = {
 
                 const decodedToken: CustomJwtPayload = jwtDecode(accessToken);
 
-                if (decodedToken.role_id !== ADMIN_ID) {
+                if (decodedToken.role_id !== ADMIN_ID && decodedToken.role_id !== DOCTOR_ID) {
                     throw new Error('Invalid role');
                 }
 
@@ -87,7 +88,23 @@ const myAuthProvider: AuthProvider = {
                 : Promise.reject()
         );
     },
-    getPermissions: () => Promise.resolve(),
+    getPermissions: () => {
+        const token = localStorage.getItem('access_token');
+        if (!token) {
+            return Promise.reject();
+        }
+        const decodedToken: CustomJwtPayload = jwtDecode(token);
+
+        if (decodedToken.role_id === ADMIN_ID) {
+            return Promise.resolve('admin');
+        }
+
+        if (decodedToken.role_id === DOCTOR_ID) {
+            return Promise.resolve('doctor');
+        }
+
+        return Promise.reject();
+    },
     getIdentity: () => {
         const request = new Request(`${apiUrl}/me`, {
             method: 'GET',
@@ -111,7 +128,6 @@ const myAuthProvider: AuthProvider = {
                     id: decodedToken.user_id,
                     fullName: data.username,
                     avatar: data.profile,
-                    role: decodedToken.role_id,
                 });
             }).catch(() => {
                 throw new Error('Network error')
