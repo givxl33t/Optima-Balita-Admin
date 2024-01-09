@@ -108,53 +108,5 @@ export const App = () => (
         )}
       </>
     )}
-    {/* <Resource 
-      name="user" 
-      list={UserList}
-      edit={UserEdit}
-      show={UserShow}
-      icon={GroupsIcon}/>
-    <Resource 
-      name="article" 
-      list={ArticleList}
-      create={ArticleCreate}
-      edit={ArticleEdit}
-      show={ArticleShow}
-      icon={ArticleIcon} />
-    <Resource
-      name="children"
-      list={ChildrenList}
-      show={ChildrenShow}
-      icon={ChildCareIcon}
-    />
-    <Resource 
-      name="forum" 
-      list={ForumList}
-      create={ForumCreate}
-      edit={ForumEdit}
-      show={ForumShow}
-      icon={ForumIcon}
-    />
-    <Resource 
-      name="comment" 
-      create={CommentCreate}
-      edit={CommentEdit}
-      show={CommentShow}
-    />
-    <Resource
-      name="like"
-    />
-    <Resource
-      name="nutritionHistory"
-      edit={NutritionHistoryEdit}
-    />
-    <Resource
-      name="consultant"
-      list={ConsultantList}
-      create={ConsultantCreate}
-      edit={ConsultantEdit}
-      show={ConsultantShow}
-      icon={PermContactCalendarIcon}
-    /> */}
   </Admin>
 );

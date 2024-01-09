@@ -4,7 +4,7 @@ import { addRefreshAuthToAuthProvider } from "react-admin";
 import { refreshAuth } from "./refreshAuth";
 import { JwtPayload, jwtDecode } from "jwt-decode";
 
-const apiUrl = import.meta.env.VITE_JSON_SERVER_URL + '/auth';
+const apiUrl = `${import.meta.env.VITE_JSON_SERVER_URL}/auth`;
 
 const ADMIN_ID = 'a1582ba5-d764-4a15-b181-657e8753869b';
 const DOCTOR_ID = '9c4e9a57-12da-4dae-b2e0-edec77c4f86e';
@@ -43,6 +43,8 @@ const myAuthProvider: AuthProvider = {
                 if (error.message === 'Invalid role') {
                     // Provide a user-friendly error message
                     throw new Error('You do not have admin rights');
+                } else if (error.message === 'Invalid token specified: must be a string') {
+                    throw new Error('Wrong email or password');
                 }
                 throw new Error('Network error')
             });
@@ -78,13 +80,14 @@ const myAuthProvider: AuthProvider = {
             });
     
     },
-    checkError: ({ status }) => {
-        if (status === 401) {
-            return Promise.reject();
+    checkError: (error) => {
+        if (error && error.status && error.status === 401) {
+            return Promise.reject("Wrong email or password");
         }
+    
         return Promise.resolve(
-            localStorage.getItem('access_token') 
-                ? Promise.resolve() 
+            localStorage.getItem('access_token')
+                ? Promise.resolve()
                 : Promise.reject()
         );
     },
