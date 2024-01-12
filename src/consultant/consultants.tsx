@@ -55,17 +55,20 @@ export const ConsultantShow: React.FC = (props) => (
     </Show>
 );
 
-export const ConsultantCreate: React.FC = (props) => (
+export const ConsultantCreate: React.FC = (props) => {
+  const optionRenderer = (choice: any) => `${choice.username} | ${choice.role === 'ADMIN' ? 'Admin' : choice.role === 'DOCTOR' ? 'Nakes' : 'Pengguna'}`;
+  return (
     <Create {...props}>
       <SimpleForm>
         <ReferenceInput label="User" source="user_id" reference="user">
-          <SelectInput optionText="username" />
+          <SelectInput optionText={optionRenderer}  />
         </ReferenceInput>
         <TextInput source="consultant_description" validate={required()} />
         <TextInput source="consultant_phone" validate={required()} />
       </SimpleForm>
     </Create>
-);
+  );
+};
 
 export const ConsultantEdit: React.FC = (props) => (
     <Edit {...props}>

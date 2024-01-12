@@ -1,7 +1,12 @@
 import * as React from 'react';
-import { List, Datagrid, TextField, DateField, Show, ShowButton, TabbedShowLayout, Filter, SearchInput, ReferenceManyField, ImageField, WrapperField, useShowController, EditButton } from 'react-admin';
+import { List, Datagrid, TextField, DateField, Show, ShowButton, TabbedShowLayout, Filter, SearchInput, ReferenceManyField, ImageField, WrapperField, useShowController, EditButton, Edit, SimpleForm, SelectInput, TextInput, DeleteButton } from 'react-admin';
 import { ZScoreLengthChart, ZScoreWeightChart } from './zScoreChart';
 import { DeleteNutritionHistoryButton } from '../nutritionHistory/nutritionHistoryButtons';
+
+const genderChoices = [
+  { gender: 'Laki-laki', name: 'Laki-laki' },
+  { gender: 'Perempuan', name: 'Perempuan' },
+];
 
 const ChildrenFilter: React.FC = (props) => (
     <Filter {...props}>
@@ -30,8 +35,23 @@ export const ChildrenList: React.FC = (props) => (
       </WrapperField>
       <DateField source="created_at" showTime label="Last weighing" sortable={false} />
       <ShowButton />
+      <EditButton />
+      <DeleteButton />
     </Datagrid>
   </List>
+)
+
+export const ChildrenEdit: React.FC = () => (
+  <Edit>
+    <SimpleForm>
+      <TextInput source="child_name" />
+      <SelectInput
+        source="gender"
+        choices={genderChoices}
+        optionText="name"
+        optionValue='gender' />
+    </SimpleForm>
+  </Edit>
 )
 
 export const ChildrenShow: React.FC = (props) => {
