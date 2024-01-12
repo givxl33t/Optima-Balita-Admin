@@ -7,7 +7,7 @@ import { ArticleList, ArticleCreate, ArticleEdit, ArticleShow } from "./article/
 import { UserList, UserEdit, UserShow } from "./user/users";
 import { ForumList, ForumCreate, ForumEdit, ForumShow } from "./forum/forums";
 import { CommentCreate, CommentEdit, CommentShow } from "./comment/comments";
-import { ChildrenList, ChildrenShow } from "./children/childrens";
+import { ChildrenList, ChildrenEdit, ChildrenShow } from "./children/childrens";
 import { NutritionHistoryEdit } from "./nutritionHistory/nutritionHistories";
 import { ConsultantList, ConsultantCreate, ConsultantEdit, ConsultantShow } from "./consultant/consultants";
 import articleDataProvider from "./article/articleProvider";
@@ -71,6 +71,7 @@ export const App = () => (
         <Resource
           name="children"
           list={ChildrenList}
+          edit={ChildrenEdit}
           show={ChildrenShow}
           icon={ChildCareIcon} />
         <Resource

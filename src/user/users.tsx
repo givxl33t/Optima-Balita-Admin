@@ -50,8 +50,6 @@ export const UserEdit: React.FC = (props) => (
   </Edit>
 );
 
-
-
 export const UserShow: React.FC = (props) => (
   <Show {...props}>
     <SimpleShowLayout>
