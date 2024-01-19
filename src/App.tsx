@@ -2,7 +2,9 @@ import {
   Admin,
   Resource,
   combineDataProviders,
+  Layout,
 } from "react-admin";
+import CustomAppBar from "./AppBar";
 import { ArticleList, ArticleCreate, ArticleEdit, ArticleShow } from "./article/articles";
 import { UserList, UserEdit, UserShow } from "./user/users";
 import { ForumList, ForumCreate, ForumEdit, ForumShow } from "./forum/forums";
@@ -49,8 +51,10 @@ const dataProvider = combineDataProviders((resource) => {
   }
 });
 
+const CustomLayout = (props: any) => <Layout {...props} appBar={CustomAppBar} />;
+
 export const App = () => (
-  <Admin authProvider={authProvider} dataProvider={dataProvider}>
+  <Admin authProvider={authProvider} dataProvider={dataProvider} layout={CustomLayout}>
     {permissions => (
       <>
         {permissions === 'admin' && (
