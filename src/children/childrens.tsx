@@ -23,7 +23,9 @@ export const ChildrenList: React.FC = (props) => (
       <TextField source="latest_height" label="Height (cm)" sortable={false} />
       <TextField source="latest_weight" label="Weight (kg)" sortable={false} />
       <TextField source="latest_bmi" label="BMI" sortable={false} />
-      <TextField source="latest_weight_category" label="Category" sortable={false} />
+      <TextField source="latest_height_category" label="Height category" sortable={false} />
+      <TextField source="latest_mass_category" label="Weight category" sortable={false} />
+      <TextField source="latest_weight_category" label="BMI category" sortable={false} />
       <WrapperField label="Weigher">
         <ImageField 
             source="creator_profile" 
@@ -69,7 +71,9 @@ export const ChildrenShow: React.FC = (props) => {
           <TextField source="latest_height" label="Latest height (cm)" />
           <TextField source="latest_weight" label="Latest weight (kg)" />
           <TextField source="latest_bmi" label="Latest BMI" />
-          <TextField source="latest_weight_category" label="Latest category" />
+          <TextField source="latest_height_category" label="Latest Height category" sortable={false} />
+          <TextField source="latest_mass_category" label="Latest Weight category" sortable={false} />
+          <TextField source="latest_weight_category" label="Latest BMI category" sortable={false} />
         </TabbedShowLayout.Tab>
         <TabbedShowLayout.Tab label="nutrition history">
           <ReferenceManyField
@@ -82,7 +86,9 @@ export const ChildrenShow: React.FC = (props) => {
               <TextField source="height" label="Height (cm)" />
               <TextField source="weight" label= "Weight (kg)" />
               <TextField source="bmi" label="BMI" />
-              <TextField source="weight_category" label="BMI Category" />
+              <TextField source="height_category" label="Height category" />
+              <TextField source="mass_category" label="Weight category" />
+              <TextField source="weight_category" label="BMI category" />
               <DateField source="created_at" showTime />
               <EditButton />
               <DeleteNutritionHistoryButton />
