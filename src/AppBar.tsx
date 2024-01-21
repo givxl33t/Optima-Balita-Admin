@@ -3,7 +3,7 @@ import { AppBar } from 'react-admin';
 import Typography from '@mui/material/Typography';
 import { Box } from '@mui/material';
 
-import logo from './assets/logo_puskesmas.png';
+import logo from './assets/logo-new.svg';
 
 const CustomAppBar: React.FC = (props) => {
   return (

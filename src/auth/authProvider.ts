@@ -15,18 +15,19 @@ interface CustomJwtPayload extends JwtPayload {
 }
 
 const myAuthProvider: AuthProvider = {
-    login: ({ username, password }) => {
+    login: ({ email, password }) => {
         const request = new Request(`${apiUrl}/login`, {
             method: 'POST',
-            body: JSON.stringify({ email: username, password }),
+            body: JSON.stringify({ email, password }),
             headers: new Headers({ 'Content-Type': 'application/json' }),
         });
 
         return fetch(request)
             .then(response => {
-                if (response.status > 400) {
-                    throw new Error(response.statusText);
+                if (response.status === 422) {
+                    throw new Error('Unprocessable Entity');
                 }
+
                 return response.json();
             })
             .then(({ accessToken, refreshToken }) => {
@@ -40,13 +41,17 @@ const myAuthProvider: AuthProvider = {
                 localStorage.setItem('access_token', accessToken);
                 localStorage.setItem('refresh_token', refreshToken);
             }).catch((error) => {
+                console.error(error);
+
                 if (error.message === 'Invalid role') {
-                    // Provide a user-friendly error message
                     throw new Error('You do not have admin rights');
                 } else if (error.message === 'Invalid token specified: must be a string') {
                     throw new Error('Wrong email or password');
+                } else if (error.message === 'Unprocessable Entity') {
+                    throw new Error('Invalid email or password');
+                } else {
+                    throw new Error('Network error')
                 }
-                throw new Error('Network error')
             });
     },
     checkAuth: () => 
