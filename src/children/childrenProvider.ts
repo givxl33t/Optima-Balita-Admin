@@ -32,6 +32,21 @@ let childrenDataProvider = {
         total: json.meta.total_data,
       }));
   },
+  getMany: ({}) => {
+    const url = `${apiUrl}`;
+    const accessToken = localStorage.getItem('access_token');
+    const headers = new Headers({
+      'Authorization': `Bearer ${accessToken}`,
+    });
+
+    return httpClient(url, {
+      method: 'GET',
+      headers,
+    })
+      .then(({ json }) => ({
+        data: json.data,
+      }));
+  },
   getOne: ({}, params: any) => {
     const url = `${apiUrl}/${params.id}`;
     const accessToken = localStorage.getItem('access_token');

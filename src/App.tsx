@@ -6,6 +6,7 @@ import {
 } from "react-admin";
 import CustomAppBar from "./AppBar";
 import LoginPage from "./LoginPage";
+import { Dashboard } from './dashboard';
 import { ArticleList, ArticleCreate, ArticleEdit, ArticleShow } from "./article/articles";
 import { UserList, UserEdit, UserShow } from "./user/users";
 import { ForumList, ForumCreate, ForumEdit, ForumShow } from "./forum/forums";
@@ -55,7 +56,7 @@ const dataProvider = combineDataProviders((resource) => {
 const CustomLayout = (props: any) => <Layout {...props} appBar={CustomAppBar} />;
 
 export const App = () => (
-  <Admin loginPage={LoginPage} authProvider={authProvider} dataProvider={dataProvider} layout={CustomLayout}>
+  <Admin dashboard={Dashboard} loginPage={LoginPage} authProvider={authProvider} dataProvider={dataProvider} layout={CustomLayout}>
     {permissions => (
       <>
         {permissions === 'admin' && (
@@ -79,38 +80,35 @@ export const App = () => (
           edit={ChildrenEdit}
           show={ChildrenShow}
           icon={ChildCareIcon} />
+        <Resource 
+          name="forum" 
+          list={ForumList}
+          create={permissions === 'admin' ? ForumCreate : undefined}
+          edit={permissions === 'admin' ? ForumEdit : undefined}
+          show={ForumShow}
+          icon={ForumIcon} />
+        <Resource
+          name="like"
+        />
         <Resource
           name="nutritionHistory"
           edit={NutritionHistoryEdit}
         />
+        <Resource 
+          name="comment" 
+          create={permissions === 'admin' ? CommentCreate : undefined}
+          edit={permissions === 'admin' ? CommentEdit : undefined}
+          show={CommentShow}
+        />
         {permissions === 'admin' && (
-          <>
-            <Resource 
-              name="forum" 
-              list={ForumList}
-              create={ForumCreate}
-              edit={ForumEdit}
-              show={ForumShow}
-              icon={ForumIcon}
-            />
-            <Resource 
-              name="comment" 
-              create={CommentCreate}
-              edit={CommentEdit}
-              show={CommentShow}
-            />
-            <Resource
-              name="like"
-            />
-            <Resource
-              name="consultant"
-              list={ConsultantList}
-              create={ConsultantCreate}
-              edit={ConsultantEdit}
-              show={ConsultantShow}
-              icon={PermContactCalendarIcon}
-            />
-          </>
+          <Resource
+            name="consultant"
+            list={ConsultantList}
+            create={ConsultantCreate}
+            edit={ConsultantEdit}
+            show={ConsultantShow}
+            icon={PermContactCalendarIcon}
+          />
         )}
       </>
     )}

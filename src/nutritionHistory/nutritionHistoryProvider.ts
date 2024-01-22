@@ -8,6 +8,30 @@ const apiUrl = import.meta.env.VITE_JSON_SERVER_URL + '/bmi';
 const httpClient = fetchUtils.fetchJson;
 
 let nutritionHistoryDataProvider = {
+  getList: ({}, params: any) => {
+    const { page, perPage } = params.pagination;
+    const { filter } = params;
+
+    let q = '';
+    if (filter.q) {
+      q = `${filter.q}`;
+    }
+
+    const url = `${apiUrl}/?limit=${perPage}&page=${page}&filter=${q}`;
+    const accessToken = localStorage.getItem('access_token');
+    const headers = new Headers({
+      'Authorization': `Bearer ${accessToken}`,
+    });
+
+    return httpClient(url, {
+      method: 'GET',
+      headers,
+    })
+      .then(({ json }) => ({
+        data: json.data,
+        total: json.meta.total_data,
+      }));
+  },
   getOne: ({}, params: any) => {
     const url = `${apiUrl}/${params.id}`;
     const accessToken = localStorage.getItem('access_token');
