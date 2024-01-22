@@ -83,12 +83,12 @@ export const Calculation = (props: Props) => {
           </Box>
           <Box component="span" sx={{ fontSize: "0.8em" }}>
             BMI
-            <div>
-              {calculation.weight_category}
-            </div>
           </Box>
         </Box>
       </ListItemSecondaryAction>
+      <Box component="span" sx={{ fontSize: "0.8em", marginTop: '35px', marginRight: '16px' }}>
+        {calculation.weight_category}
+      </Box>
     </ListItem>
   );
 };
