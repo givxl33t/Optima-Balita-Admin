@@ -50,11 +50,7 @@ export const Calculation = (props: Props) => {
         {isUserLoading ? (
           <Avatar />
         ) : (
-          <Avatar
-            src={`${user?.profile}?size=32x32`}
-            sx={{ bgcolor: "background.paper" }}
-            alt={`${user?.username}`}
-          />
+          <Avatar src={`${user?.profile}`} />
         )}
       </ListItemAvatar>
       {isChildLoading ? (
