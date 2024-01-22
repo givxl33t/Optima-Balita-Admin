@@ -65,7 +65,6 @@ export const Calculation = (props: Props) => {
         />
       )}
       <ListItemSecondaryAction>
-        {/* bmi section */}
         <Box
           component="span"
           sx={{
@@ -84,23 +83,9 @@ export const Calculation = (props: Props) => {
           </Box>
           <Box component="span" sx={{ fontSize: "0.8em" }}>
             BMI
-          </Box>
-        </Box>
-        <Box
-          component="span"
-          sx={{
-            marginRight: "1em",
-            color: "text.primary"
-          }}
-        >
-          <Box
-            component="span"
-            sx={{
-              fontWeight: "bold",
-              fontSize: "1.2em"
-            }}
-          >
-            {calculation.weight_category}
+            <div>
+              {calculation.weight_category}
+            </div>
           </Box>
         </Box>
       </ListItemSecondaryAction>
