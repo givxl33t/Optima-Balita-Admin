@@ -6,6 +6,7 @@ export const DeleteNutritionHistoryButton = () => {
   return (
     <DeleteButton
       resource="nutritionHistory"
+      label='Hapus'
       redirect={`/children/${nutritionHistory.child_id}/show/1`}
     />
   )

@@ -61,14 +61,16 @@ export const App = () => (
       <>
         {permissions === 'admin' && (
           <Resource 
-            name="user" 
+            name="user"
+            options={{ label: 'Akun Pengguna' }}
             list={UserList}
             edit={UserEdit}
             show={UserShow}
             icon={GroupsIcon}/>
         )}
         <Resource 
-          name="article" 
+          name="article"
+          options={{ label: 'Artikel' }}
           list={ArticleList}
           create={ArticleCreate}
           edit={ArticleEdit}
@@ -76,12 +78,14 @@ export const App = () => (
           icon={ArticleIcon} />
         <Resource
           name="children"
+          options={{ label: 'Balita' }}
           list={ChildrenList}
           edit={ChildrenEdit}
           show={ChildrenShow}
           icon={ChildCareIcon} />
         <Resource 
-          name="forum" 
+          name="forum"
+          options={{ label: 'Forum Diskusi' }}
           list={ForumList}
           create={permissions === 'admin' ? ForumCreate : undefined}
           edit={permissions === 'admin' ? ForumEdit : undefined}
@@ -103,6 +107,7 @@ export const App = () => (
         {permissions === 'admin' && (
           <Resource
             name="consultant"
+            options={{ label: 'Konsultan' }}
             list={ConsultantList}
             create={ConsultantCreate}
             edit={ConsultantEdit}

@@ -26,7 +26,7 @@ const LatestCalc = (props: Props) => {
 
   return (
     <Card sx={{ flex: 1 }}>
-      <CardHeader title="Latest Calculation" />
+      <CardHeader title="Penimbangan Terkini" />
       <List dense={true}>
         {calculations.map((record) => (
           <Calculation key={record.id} calculation={record} />

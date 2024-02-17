@@ -4,9 +4,12 @@ import { RichTextInput } from 'ra-input-rich-text';
 
 const ArticleFilter: React.FC = (props) => (
     <Filter {...props}>
-        <SearchInput source="q" alwaysOn />
+        <SearchInput source="q" placeholder="Cari..." alwaysOn />
     </Filter>
 );
+
+const LocalizedShowButton = () => <ShowButton label="Lihat" />;
+const LocalizedDeleteButton = () => <DeleteButton label="Hapus" />;
 
 export const ArticleList: React.FC<ListProps> = (props) => (
     <List {...props} filters={<ArticleFilter/>}>
@@ -15,11 +18,12 @@ export const ArticleList: React.FC<ListProps> = (props) => (
                 source="image"
                 sx={{'& img': { maxWidth: 150, maxHeight: 150, objectFit: 'contain' }}}
                 title="title"
+                label="Gambar Artikel"
                 sortable={false}
             />
-            <TextField source="title" sortable={false} />
-            <TextField source="description" sortable={false} />
-            <WrapperField label="Author">
+            <TextField source="title" label="Judul" sortable={false} />
+            <TextField source="description" label="Deskripsi" sortable={false} />
+            <WrapperField label="Penulis">
                 <ImageField 
                     source="author_profile" 
                     sx={{'& img': { maxWidth: 50, maxHeight: 50, objectFit: 'cover', borderRadius: '50%' }}} 
@@ -28,10 +32,10 @@ export const ArticleList: React.FC<ListProps> = (props) => (
                 />
                 <TextField source="author" sortable={false} />
             </WrapperField>
-            <DateField source="created_at" showTime label="Published at" sortable={false} />
-            <ShowButton />
+            <DateField source="created_at" showTime label="Tanggal terbit" sortable={false} />
+            <LocalizedShowButton />
             <EditButton />
-            <DeleteButton />
+            <LocalizedDeleteButton />
         </Datagrid>
     </List>
 );
@@ -39,12 +43,11 @@ export const ArticleList: React.FC<ListProps> = (props) => (
 export const ArticleEdit: React.FC = () => (
     <Edit>
         <SimpleForm>
-            <TextInput disabled label="Id" source="id" />
-            <TextInput source="title" />
-            <TextInput source="description" />
-            <RichTextInput source="content" />
+            <TextInput source="title" label="Judul" />
+            <TextInput source="description" label="Deskripsi" />
+            <RichTextInput source="content" label="Konten" />
             <ImageField source="image" title="Image" />
-            <ImageInput source="image" label="Related pictures" accept="image/*">
+            <ImageInput source="image" placeholder="Letakkan gambar disini, atau klik untuk memilih." label="Gambar terkait" accept="image/*">
                 <ImageField source="src" title="title" />
             </ImageInput>
         </SimpleForm>
@@ -54,10 +57,10 @@ export const ArticleEdit: React.FC = () => (
 export const ArticleCreate: React.FC = (props) => (
     <Create {...props}>
         <SimpleForm>
-            <TextInput source="title" validate={required()} />
-            <TextInput source="description" validate={required()}  />
-            <RichTextInput source="content" />
-            <ImageInput source="image" label="Related pictures" accept="image/*">
+            <TextInput source="title" label="Judul" validate={required()} />
+            <TextInput source="description" label="Deskripsi" validate={required()}  />
+            <RichTextInput source="content" label="Konten" />
+            <ImageInput source="image" placeholder="Letakkan gambar disini, atau klik untuk memilih." label="Gambar terkait" accept="image/*">
                 <ImageField source="src" title="title" />
             </ImageInput>
         </SimpleForm>
@@ -67,19 +70,20 @@ export const ArticleCreate: React.FC = (props) => (
 export const ArticleShow: React.FC = (props) => (
     <Show {...props}>
         <TabbedShowLayout>
-            <TabbedShowLayout.Tab label="summary">
-                <TextField source="id" />
-                <TextField source="slug" />
-                <TextField source="title" />
-                <TextField source="description" />
-                <DateField source="created_at" showTime label="Published at" />
+            <TabbedShowLayout.Tab label="Rincian">
+                <TextField source="id" label="Id artikel" />
+                <TextField source="slug" label="SEO slug" />
+                <TextField source="title" label="Judul" />
+                <TextField source="description" label="Deskripsi" />
+                <DateField source="created_at" showTime label="Tanggal terbit" />
             </TabbedShowLayout.Tab>
-            <TabbedShowLayout.Tab label="content">
-                <RichTextField source="content" />
+            <TabbedShowLayout.Tab label="Konten">
+                <RichTextField source="content" label="Konten artikel" />
             </TabbedShowLayout.Tab>
-            <TabbedShowLayout.Tab label="pictures">
+            <TabbedShowLayout.Tab label="Gambar">
                 <ImageField 
                     source="image"
+                    label="Gambar artikel"
                     title="title"
                 />
             </TabbedShowLayout.Tab>
