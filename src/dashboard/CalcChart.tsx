@@ -54,7 +54,7 @@ const CalcChart = (props: { calculations?: NutritionCalc[] }) => {
 
   return (
     <Card>
-      <CardHeader title="Penimbangan 30 Hari Terakhir" />
+      <CardHeader title="Aktivitas Penimbangan 30 Hari Terakhir" />
       <CardContent>
         <ResponsiveContainer width="100%" height={300}>
           <AreaChart data={data}>
