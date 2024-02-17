@@ -10,7 +10,7 @@ const ChildCount = (props: Props) => {
   return (
     <CardWithIcon
       icon={ChildCareIcon}
-      title="Child Count"
+      title="Jumlah Balita"
       subtitle={value ? value.toString() : "0"}
       to="/children"
     />

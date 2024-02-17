@@ -11,7 +11,7 @@ const NbStuntedChild= (props: Props) => {
   return (
     <CardWithIcon
       icon={GppMaybeIcon}
-      title="Stunted Child"
+      title="Balita Terindikasi Stunting"
       subtitle={value ? value.toString() : "0"}
       to="/children"
     />

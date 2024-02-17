@@ -61,7 +61,7 @@ export const Calculation = (props: Props) => {
       ) : (
         <ListItemText
           primary={new Date(calculation.created_at).toLocaleString("id-ID")}
-          secondary={`Child name : ${child?.child_name}`}
+          secondary={`Nama anak : ${child?.child_name}`}
         />
       )}
       <ListItemSecondaryAction>

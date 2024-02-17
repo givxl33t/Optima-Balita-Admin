@@ -13,9 +13,11 @@ export const CommentCreate: React.FC = () => {
                     <AutocompleteInput
                         optionText={(choice) => `${choice.id}`}
                         validate={required()}
+                        label="Id diskusi"
+                        readOnly
                     />
                 </ReferenceInput>
-                <TextInput source="comment_content" validate={required()} />
+                <TextInput source="comment_content" label="Konten komentar" validate={required()} />
             </SimpleForm>
         </Create>
     )
@@ -51,7 +53,7 @@ export const CommentEdit: React.FC = () => {
     return (
         <Edit mutationOptions={{ onSuccess }} >
             <SimpleForm>
-                <TextInput source="comment_content" validate={required()} />
+                <TextInput source="comment_content" label="Konten komentar" />
             </SimpleForm>
         </Edit>
     )
@@ -60,16 +62,16 @@ export const CommentEdit: React.FC = () => {
 export const CommentShow: React.FC = (props) => (
     <Show {...props}>
         <TabbedShowLayout>
-            <TabbedShowLayout.Tab label="summary">
-                <TextField source="id" />
-                <TextField source="comment_content" />
-                <TextField source="commenter_username" />
-                <DateField source="created_at" showTime />
+            <TabbedShowLayout.Tab label="Rincian">
+                <TextField source="id" label="Id komentar" />
+                <TextField source="comment_content" label="Konten komentar" />
+                <TextField source="commenter_username" label="Nama pembuat" />
+                <DateField source="created_at" label="Tanggal dibuat" showTime />
             </TabbedShowLayout.Tab>
-            <TabbedShowLayout.Tab label="discussion">
-                <TextField source="discussion_id" />
-                <TextField source="discussion_title" />
-                <TextField source="discussion_post_content" />
+            <TabbedShowLayout.Tab label="Diskusi">
+                <TextField source="discussion_id" label="Id diskusi" />
+                <TextField source="discussion_title" label="Judul diskusi" />
+                <TextField source="discussion_post_content" label="Konten diskusi" />
             </TabbedShowLayout.Tab>
         </TabbedShowLayout>
     </Show>

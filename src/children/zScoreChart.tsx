@@ -45,16 +45,16 @@ export const ZScoreLengthChart = ({ data }: { data: any }) => {
       <LineChart data={zScoreData} margin={{ bottom: 20 }}>
         <CartesianGrid stroke="#eee" />
         <XAxis dataKey="Month" >
-          <Label value="Month" offset={-10} position="insideBottom" />
+          <Label value="Bulan" offset={-10} position="insideBottom" />
         </XAxis>
-        <YAxis label={{ value: 'Height (cm)', angle: -90, position: 'insideLeft', offset: 20 }} domain={[0, 125]} />
+        <YAxis label={{ value: 'Tinggi (cm)', angle: -90, position: 'insideLeft', offset: 20 }} domain={[0, 125]} />
         <Tooltip />
-        <Line type="monotone" dataKey="SD3" stroke={data.gender === "Laki-laki" ? "#8884d8" : "#d888e4"} name="Z-Score 3" dot={false} />
-        <Line type="monotone" dataKey="SD2" stroke="#82ca9d" name="Z-Score 2" dot={false} />
-        <Line type="monotone" dataKey="SD0" stroke="#ffc658" name="Z-Score 0" dot={false} />
-        <Line type="monotone" dataKey="SD2neg" stroke={data.gender === "Laki-laki" ? "#ff0000" : "#ff8080"} name="Z-Score -2" dot={false} />
-        <Line type="monotone" dataKey="SD3neg" stroke={data.gender === "Laki-laki" ? "#0000ff" : "#cc0077"} name="Z-Score -3" dot={false} />
-        <Line type="monotone" dataKey="height" stroke="#01110a" name="Height" />
+        <Line type="monotone" dataKey="SD3" stroke={data.gender === "Laki-laki" ? "#8884d8" : "#d888e4"} name="SD 3" dot={false} />
+        <Line type="monotone" dataKey="SD2" stroke="#82ca9d" name="SD 2" dot={false} />
+        <Line type="monotone" dataKey="SD0" stroke="#ffc658" name="SD 0" dot={false} />
+        <Line type="monotone" dataKey="SD2neg" stroke={data.gender === "Laki-laki" ? "#ff0000" : "#ff8080"} name="SD -2" dot={false} />
+        <Line type="monotone" dataKey="SD3neg" stroke={data.gender === "Laki-laki" ? "#0000ff" : "#cc0077"} name="SD -3" dot={false} />
+        <Line type="monotone" dataKey="height" stroke="#01110a" name="Tinggi" />
       </LineChart>
     </ResponsiveContainer>
   );
@@ -87,16 +87,16 @@ export const ZScoreWeightChart = ({ data }: { data: any }) => {
       <LineChart data={zScoreData} margin={{ bottom: 20 }} >
         <CartesianGrid stroke="#eee" />
         <XAxis dataKey="Month" >
-          <Label value="Month" offset={-10} position="insideBottom" />
+          <Label value="Bulan" offset={-10} position="insideBottom" />
         </XAxis>
-        <YAxis label={{ value: 'Weight (kg)', angle: -90, position: 'insideLeft', offset: 20 }} domain={[0, 30]} />
+        <YAxis label={{ value: 'Berat (kg)', angle: -90, position: 'insideLeft', offset: 20 }} domain={[0, 30]} />
         <Tooltip />
-        <Line type="monotone" dataKey="SD3" stroke={data.gender === "Laki-laki" ? "#8884d8" : "#d888e4"} name="Z-Score 3" dot={false} />
-        <Line type="monotone" dataKey="SD2" stroke="#82ca9d" name="Z-Score 2" dot={false} />
-        <Line type="monotone" dataKey="SD0" stroke="#ffc658" name="Z-Score 0" dot={false} />
-        <Line type="monotone" dataKey="SD2neg" stroke={data.gender === "Laki-laki" ? "#ff0000" : "#ff8080"} name="Z-Score -2" dot={false} />
-        <Line type="monotone" dataKey="SD3neg" stroke={data.gender === "Laki-laki" ? "#0000ff" : "#cc0077"} name="Z-Score -3" dot={false} />
-        <Line type="monotone" dataKey="weight" stroke="#01110a" name="Weight" />
+        <Line type="monotone" dataKey="SD3" stroke={data.gender === "Laki-laki" ? "#8884d8" : "#d888e4"} name="SD 3" dot={false} />
+        <Line type="monotone" dataKey="SD2" stroke="#82ca9d" name="SD 2" dot={false} />
+        <Line type="monotone" dataKey="SD0" stroke="#ffc658" name="SD 0" dot={false} />
+        <Line type="monotone" dataKey="SD2neg" stroke={data.gender === "Laki-laki" ? "#ff0000" : "#ff8080"} name="SD -2" dot={false} />
+        <Line type="monotone" dataKey="SD3neg" stroke={data.gender === "Laki-laki" ? "#0000ff" : "#cc0077"} name="SD -3" dot={false} />
+        <Line type="monotone" dataKey="weight" stroke="#01110a" name="Berat" />
       </LineChart>
     </ResponsiveContainer>
   );
