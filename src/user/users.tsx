@@ -9,27 +9,31 @@ const roleChoices = [
 
 const UserFilter: React.FC = (props) => (
   <Filter {...props}>
-      <SearchInput source="q" alwaysOn />
+      <SearchInput source="q" placeholder="Cari..." alwaysOn />
   </Filter>
 );
+
+const LocalizedShowButton = () => <ShowButton label="Lihat" />;
+const LocalizedDeleteButton = () => <DeleteButton label="Hapus" />;
 
 
 export const UserList: React.FC<ListProps> = (props) => (
     <List {...props} filters={<UserFilter />} >
         <Datagrid>
           <ImageField 
-            source="profile" 
+            source="profile"
+            label="Foto profil"
             sx={{'& img': { maxWidth: 50, maxHeight: 50, objectFit: 'cover', borderRadius: '50%' }}} 
             title="username"
             sortable={false} 
           />
-          <TextField source="username" sortable={false} />
+          <TextField source="username" label="Nama pengguna" sortable={false} />
           <EmailField source="email" sortable={false} />
-          <TextField source="role" sortable={false} />
-          <DateField source="created_at" showTime sortable={false} />
-          <ShowButton />
+          <TextField source="role" label="Hak akses" sortable={false} />
+          <DateField source="created_at" label="Tanggal daftar" showTime sortable={false} />
+          <LocalizedShowButton />
           <EditButton />
-          <DeleteButton />
+          <LocalizedDeleteButton />
         </Datagrid>
     </List>
 );
@@ -37,13 +41,13 @@ export const UserList: React.FC<ListProps> = (props) => (
 export const UserEdit: React.FC = (props) => (
   <Edit {...props}>
     <SimpleForm>
-      <TextInput source="username" />
+      <TextInput source="username" label="Nama pengguna" />
       <TextInput source="email" />
-      <TextInput source="role" disabled={true} />
+      <TextInput source="role" disabled={true} label="Hak akses" />
       <SelectInput 
         source="role_id"
         choices={roleChoices}
-        label="Edit Role"
+        label="Edit hak akses"
         optionText="name"
         optionValue="role_id" />
     </SimpleForm>
@@ -53,16 +57,17 @@ export const UserEdit: React.FC = (props) => (
 export const UserShow: React.FC = (props) => (
   <Show {...props}>
     <SimpleShowLayout>
-      <TextField source="id" />
+      <TextField source="id" label="Id pengguna" />
       <ImageField 
-        source="profile" 
+        source="profile"
+        label="Foto profil"
         sx={{'& img': { maxWidth: 50, maxHeight: 50, objectFit: 'cover', borderRadius: '50%' }}} 
         title="username"
       />
-      <TextField source="username" />
+      <TextField source="username" label="Nama pengguna" />
       <EmailField source="email" />
-      <TextField source="role" />
-      <DateField source="created_at" showTime />
+      <TextField source="role" label="Hak akses" />
+      <DateField source="created_at" label="Tanggal daftar" showTime />
     </SimpleShowLayout>
   </Show>
 );

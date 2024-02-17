@@ -5,20 +5,23 @@ import { CreateCommentButton, DeleteCommentButton } from '../comment/commentButt
 
 const ForumFilter: React.FC = (props) => (
     <Filter {...props}>
-        <SearchInput source="q" alwaysOn />
+        <SearchInput source="q" placeholder="Cari..." alwaysOn />
     </Filter>
 );
+
+const LocalizedShowButton = () => <ShowButton label="Lihat" />;
+const LocalizedDeleteButton = () => <DeleteButton label="Hapus" />;
 
 export const ForumList: React.FC<ListProps> = (props) => {
     const { permissions } = usePermissions();
     return (
         <List {...props} filters={<ForumFilter />}>
             <Datagrid>
-                <TextField source="title" sortable={false} />
-                <TextField source="post_content" label="Content" sortable={false} />
-                <TextField source="comment_count" sortable={false} />
-                <TextField source="like_count" sortable={false} />
-                <WrapperField label="Poster">
+                <TextField source="title" label="Judul diskusi" sortable={false} />
+                <TextField source="post_content" label="Konten diskusi" sortable={false} />
+                <TextField source="comment_count" label="Jumlah komentar" sortable={false} />
+                <TextField source="like_count" label="Jumlah suka" sortable={false} />
+                <WrapperField label="Pembuat">
                     <ImageField 
                         source="poster_profile" 
                         sx={{'& img': { maxWidth: 50, maxHeight: 50, objectFit: 'cover', borderRadius: '50%' }}} 
@@ -27,10 +30,10 @@ export const ForumList: React.FC<ListProps> = (props) => {
                     />
                     <TextField source="poster_username" sortable={false} />
                 </WrapperField>
-                <DateField source="created_at" showTime sortable={false} />
-                <ShowButton />
+                <DateField source="created_at" label="Tanggal dibuat" showTime sortable={false} />
+                <LocalizedShowButton />
                 {permissions === 'admin' && <EditButton />}
-                {permissions === 'admin' && <DeleteButton />}
+                {permissions === 'admin' && <LocalizedDeleteButton />}
             </Datagrid>
         </List>
     );
@@ -39,9 +42,8 @@ export const ForumList: React.FC<ListProps> = (props) => {
 export const ForumEdit: React.FC = () => (
     <Edit>
         <SimpleForm>
-            <TextInput disabled label="Id" source="id" />
-            <TextInput source="title" />
-            <TextInput source="post_content" />
+            <TextInput source="title" label="Judul diskusi" />
+            <TextInput source="post_content" label="Konten diskusi" />
         </SimpleForm>
     </Edit>
 );
@@ -49,8 +51,8 @@ export const ForumEdit: React.FC = () => (
 export const ForumCreate: React.FC = (props) => (
     <Create {...props}>
         <SimpleForm>
-            <TextInput source="title" validate={required()} />
-            <TextInput source="post_content" validate={required()}  />
+            <TextInput source="title" label="Judul diskusi" validate={required()} />
+            <TextInput source="post_content" label="Konten diskusi" validate={required()}  />
         </SimpleForm>
     </Create>
 
@@ -61,24 +63,24 @@ export const ForumShow: React.FC = (props) => {
     return (
         <Show {...props}>
         <TabbedShowLayout>
-            <TabbedShowLayout.Tab label="summary">
-                <TextField source="id" />
-                <TextField source="title" />
-                <TextField source="post_content" />
-                <TextField source="comment_count" />
-                <TextField source="like_count" />
-                <DateField source="created_at" showTime />
+            <TabbedShowLayout.Tab label="Rincian">
+                <TextField source="id" label="Id diskusi" />
+                <TextField source="title" label="Judul" />
+                <TextField source="post_content" label="Konten" />
+                <TextField source="comment_count" label="Jumlah komentar" />
+                <TextField source="like_count" label="Jumlah suka" />
+                <DateField source="created_at" label="Tanggal dibuat" showTime />
             </TabbedShowLayout.Tab>
-            <TabbedShowLayout.Tab label="comments">
+            <TabbedShowLayout.Tab label="Komentar">
                 <ReferenceManyField
-                    label="Comments"
+                    label="Komentar diskusi"
                     reference="comment"
                     target="discussion_id"
                     pagination={<Pagination />}
                 >
                     <Datagrid>
-                        <TextField source="comment_content" />
-                        <WrapperField label="Commenter">
+                        <TextField source="comment_content" label="Konten komentar" />
+                        <WrapperField label="Pemberi komentar">
                             <ImageField 
                                 source="commenter_profile" 
                                 sx={{'& img': { maxWidth: 50, maxHeight: 50, objectFit: 'cover', borderRadius: '50%' }}} 
@@ -87,41 +89,43 @@ export const ForumShow: React.FC = (props) => {
                             />
                             <TextField source="commenter_username" sortable={false} />
                         </WrapperField>
-                        <DateField source="created_at" showTime />
-                        <ShowButton />
+                        <DateField source="created_at" label="Tanggal dibuat" showTime />
+                        <LocalizedShowButton />
                         {permissions === 'admin' && <EditButton />}
                         {permissions === 'admin' && <DeleteCommentButton />}
                     </Datagrid>
                 </ReferenceManyField>
                 <CreateCommentButton />
             </TabbedShowLayout.Tab>
-            <TabbedShowLayout.Tab label="likes">
+            <TabbedShowLayout.Tab label="Suka">
                 <ReferenceManyField
-                    label="Likes"
+                    label="Penyuka diskusi"
                     reference="like"
                     target="discussion_id"
                 >
                     <Datagrid bulkActionButtons={false}>
                     <ImageField 
-                        source="profile" 
+                        source="profile"
+                        label="Foto profil"
                         sx={{'& img': { maxWidth: 50, maxHeight: 50, objectFit: 'cover', borderRadius: '50%' }}} 
                         title="username"
                         sortable={false} 
                     />
-                    <TextField source="username" sortable={false} />
+                    <TextField source="username" label="Nama penyuka" sortable={false} />
                     </Datagrid>
                 </ReferenceManyField>
             </TabbedShowLayout.Tab>
-            <TabbedShowLayout.Tab label="poster">
-                <TextField source="poster_id" />
+            <TabbedShowLayout.Tab label="Pembuat">
+                <TextField source="poster_id" label="Id pembuat" />
                 <ImageField 
-                        source="poster_profile" 
+                        source="poster_profile"
+                        label="Foto profil" 
                         sx={{'& img': { maxWidth: 50, maxHeight: 50, objectFit: 'cover', borderRadius: '50%' }}} 
                         title="username"
                         sortable={false} 
                     />
-                <TextField source="poster_username" />
-                <TextField source="poster_role" />
+                <TextField source="poster_username" label="Nama pembuat" />
+                <TextField source="poster_role" label="Hak akses pembuat" />
                 
             </TabbedShowLayout.Tab>
         </TabbedShowLayout>

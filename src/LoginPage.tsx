@@ -39,7 +39,7 @@ const SignInSide = () => {
     const data = new FormData(event.currentTarget);
     login({ email: data.get('email'), password: data.get('password') })
       .then(() => {
-        notify('Logged in successfully');
+        notify('Berhasil masuk!');
       })
       .catch((err) => {
         notify(err.message, { type: 'error' });
@@ -89,7 +89,7 @@ const SignInSide = () => {
                 required
                 fullWidth
                 id="email"
-                label="Email Address"
+                label="Email"
                 name="email"
                 autoComplete="email"
                 autoFocus
@@ -99,14 +99,14 @@ const SignInSide = () => {
                 required
                 fullWidth
                 name="password"
-                label="Password"
+                label="Kata sandi"
                 type="password"
                 id="password"
                 autoComplete="current-password"
               />
               <FormControlLabel
                 control={<Checkbox value="remember" color="primary" />}
-                label="Remember me"
+                label="Ingat saya"
               />
               <Button
                 type="submit"

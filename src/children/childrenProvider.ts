@@ -71,6 +71,9 @@ let childrenDataProvider = {
 
     const data = {
       child_name: params.data.child_name,
+      child_nik: params.data.child_nik,
+      child_village: params.data.child_village,
+      date_of_birth: params.data.date_of_birth,
       gender: params.data.gender,
     };
 

@@ -17,6 +17,7 @@ export const DeleteCommentButton = () => {
   return (
     <DeleteButton
       resource="comment"
+      label='Hapus'
       redirect={`/forum/${comment.discussion_id}/show/1`}
     />
   )

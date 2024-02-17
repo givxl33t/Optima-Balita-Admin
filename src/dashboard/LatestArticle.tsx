@@ -26,7 +26,7 @@ const LatestArticles: React.FC = () => {
         <CardWithIcon
           to="/article"
           icon={ArticleIcon}
-          title="Latest Articles"
+          title="Artikel Terkini"
           subtitle={<WithListContext render={({ total }) => <>{total}</>} />}
         >
           <SimpleList<Article>
@@ -58,7 +58,7 @@ const LatestArticles: React.FC = () => {
             color="primary"
           >
             <Box p={1} sx={{ color: 'primary.main' }}>
-              SEE ALL ARTICLES
+              LIHAT SEMUA ARTIKEL
             </Box>
           </Button>
         </CardWithIcon>

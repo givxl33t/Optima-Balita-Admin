@@ -36,7 +36,7 @@ const LatestDiscussions: React.FC = () => {
     <CardWithIcon
       to="/forum"
       icon={CommentIcon}
-      title="Latest Discussions"
+      title="Diskusi Terkini"
       subtitle={total ? total.toString() : "0"}
     >
       <List sx={{ display }}>
@@ -75,7 +75,7 @@ const LatestDiscussions: React.FC = () => {
         color="primary"
       >
         <Box p={1} sx={{ color: "primary.main" }}>
-          SEE ALL DISCUSSIONS
+          LIHAT SEMUA DISKUSI
         </Box>
       </Button>
     </CardWithIcon>
