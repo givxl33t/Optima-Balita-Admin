@@ -33,9 +33,9 @@ export const NutritionHistoryEdit: React.FC = (props) => {
     return (
         <Edit mutationOptions={{ onSuccess }} {...props}>
             <SimpleForm>
-                <TextInput source="age_in_month" label="Age (months)" />
-                <TextInput source="weight" label="Weight (kg)" />
-                <TextInput source="height" label="Height (cm)" />
+                <TextInput source="age_in_month" label="Umur saat ditimbang (bulan)" />
+                <TextInput source="weight" label="Berat (kg)" />
+                <TextInput source="height" label="Tinggi (cm)" />
             </SimpleForm>
         </Edit>
     )
