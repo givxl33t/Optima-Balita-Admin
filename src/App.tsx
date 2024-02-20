@@ -96,10 +96,12 @@ export const App = () => (
         />
         <Resource
           name="nutritionHistory"
+          options={{ label: 'Status Gizi' }}
           edit={NutritionHistoryEdit}
         />
         <Resource 
-          name="comment" 
+          name="comment"
+          options={{ label: 'Komentar' }}
           create={permissions === 'admin' ? CommentCreate : undefined}
           edit={permissions === 'admin' ? CommentEdit : undefined}
           show={CommentShow}
